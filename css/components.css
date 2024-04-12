@@ -1,0 +1,27 @@
+.lineContainer{
+    display: flex;
+    justify-content: space-around;
+    position: fixed;
+    width: 100%;
+    z-index: -1;
+}
+
+.line{
+    width: 1px;
+    height: 100vh;
+    background: #24262E;
+}
+
+.btn{
+    display: inline-block;
+    padding: 14px 28px;
+    color: #fff;
+    border: 1px solid #fff;
+    font-weight: 500;
+    transition: .4s;
+}
+
+.btn:hover{
+    background: #fff;
+    color: #24262E;
+}
