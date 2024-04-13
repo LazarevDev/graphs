@@ -163,12 +163,26 @@
                 },
                 font: {
                     color: 'white' // цвет текста внутри узлов
-                }
+                },
             }
         };
 
         var network = new vis.Network(container, data, options);
 
+        // Add hidden attribute to nodes that should be initially hidden
+        nodes.forEach(function(node) {
+            if (node.id !== 1 && node.id !== 2 && node.id !== 3 && node.id !== 4 && node.id !== 5) { // Exclude nodes with IDs 1, 2, 3, and 4
+                node.hidden = true;
+            }
+        });
+        
+
+        var container = document.getElementById('mynetwork');
+        var data = {
+            nodes: nodes,
+            edges: edges
+        };
+        var network = new vis.Network(container, data, options);
         function animateProgress() {
             nodes.forEach(function(node) {
                 if (node.maxProgress) {
@@ -179,6 +193,7 @@
                                 node.progress++;
                                 updateNodeLabel(node);
                                 updateSocialBlock(node.label.toLowerCase(), node.progress, node.maxProgress); // Добавлено обновление данных в социальных блоках
+                                network.body.data.nodes.update({ id: node.id, hidden: false }); // Show the node
                             } else {
                                 clearInterval(interval);
                             }
@@ -187,6 +202,7 @@
                 }
             });
         }
+
 
         function updateNodeLabel(node) {
             var label;
@@ -210,6 +226,24 @@
         setTimeout(function() {
             animateProgress();
         }, 1000);
+
+        // Функция для отображения текста
+        function showLoadedText() {
+            var loadedText = document.getElementById('loadedText');
+            loadedText.style.display = 'block';
+        }
+
+        // Функция для открытия модального окна
+        function openModal() {
+            var modal = document.getElementById('myModal');
+            modal.style.display = 'block';
+        }
+
+        // Вызов функций после загрузки всех графов
+        window.addEventListener('load', function() {
+            showLoadedText();
+            openModal();
+        });
     </script>
 
 </body>
