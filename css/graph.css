@@ -79,3 +79,18 @@
     font-weight: unset;
     font-size: 14px;
 }
+
+@media(min-width: 320px) and (max-width: 550px){
+    #mynetwork{
+        height: 40vh;
+    }
+    
+    .social-block{
+        padding: 25px;
+        width: calc(100% - 50px);
+    }
+    
+    .modal{
+        width: calc(90% - 40px);
+    }
+}
